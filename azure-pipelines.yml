@@ -33,10 +33,16 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'demoarv'
     appType: 'webAppLinux'
     WebAppName: 'demoarvwebapp'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/Demoarvwebapp/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/Demoarvwebapp.zip'
