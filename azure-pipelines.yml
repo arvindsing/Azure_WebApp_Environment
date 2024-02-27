@@ -28,7 +28,7 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'demoarvsp'
     appType: 'webApp'
-    WebAppName: 'demodss'
+    WebAppName: 'demoarvadowin'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
