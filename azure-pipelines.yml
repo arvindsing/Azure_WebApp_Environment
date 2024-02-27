@@ -23,13 +23,14 @@ steps:
     command: 'publish'
     publishWebProjects: true
 
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'demoarvsp'
     appType: 'webApp'
     WebAppName: 'demoarvadowin'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
 
