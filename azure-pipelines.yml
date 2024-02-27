@@ -26,9 +26,9 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'demoarv'
+    azureSubscription: 'demoarvsp'
     appType: 'webAppLinux'
-    WebAppName: 'demoarvwebapp'
+    WebAppName: 'demodss'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
