@@ -24,25 +24,14 @@ steps:
     publishWebProjects: true
 
 
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'demoarvsp'
     appType: 'webApp'
-    WebAppName: 'demodofweb'
+    WebAppName: 'demowinapp'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-  enabled: false
+  enabled: true
 
 
 
