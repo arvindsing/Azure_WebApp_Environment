@@ -31,7 +31,7 @@ steps:
     appType: 'webApp'
     WebAppName: 'demodofweb'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-
+  enabled: false
 
 
 
