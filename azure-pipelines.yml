@@ -23,19 +23,7 @@ steps:
     command: 'publish'
     publishWebProjects: true
 
-- download: current
-  patterns: '**/*.zip'
 
-- task: DownloadPipelineArtifact@2
-  inputs:
-    buildType: 'current'
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
@@ -44,7 +32,7 @@ steps:
     appType: 'webApp'
     WebAppName: 'demowinapp'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-  enabled: false
+  enabled: true
 
 
 
