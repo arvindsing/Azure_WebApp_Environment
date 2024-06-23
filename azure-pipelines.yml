@@ -29,7 +29,7 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'demoarvsp'
     appType: 'webApp'
-    WebAppName: 'demoarvadowin'
+    WebAppName: 'demowebapp'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 
