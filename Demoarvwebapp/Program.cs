@@ -6,6 +6,7 @@ builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+//chnages from VS in feature branch
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
