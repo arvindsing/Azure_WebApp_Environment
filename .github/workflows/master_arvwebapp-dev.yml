@@ -53,9 +53,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F3F52AC085AB4DE98BD7FCDD27F1473F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0A472152A34B45BA80BD0247078A83DD }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7B1844C14CBF49CBB4E5D9934B0A30AD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DEV }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DEV }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DEV }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -86,9 +86,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F3F52AC085AB4DE98BD7FCDD27F1473F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0A472152A34B45BA80BD0247078A83DD }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7B1844C14CBF49CBB4E5D9934B0A30AD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_STAGE }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_STAGE }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_STAGE }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -118,9 +118,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F3F52AC085AB4DE98BD7FCDD27F1473F }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0A472152A34B45BA80BD0247078A83DD }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7B1844C14CBF49CBB4E5D9934B0A30AD }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_PROD }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_PROD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_PROD }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
