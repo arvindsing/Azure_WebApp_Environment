@@ -35,9 +35,10 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-  deploy:
+  deploy-dev:
     runs-on: windows-latest
     needs: build
+    environment: dev
     
     permissions:
       id-token: write #This is required for requesting the JWT
@@ -63,4 +64,68 @@ jobs:
           app-name: 'arvwebapp-dev'
           slot-name: 'Production'
           package: .
-          
+
+  deploy-staging:
+    runs-on: windows-latest
+    needs: deploy-dev
+    environment: 
+      name: staging
+      url: https://arvwebapp-staging-fndqakfaceesftcz.westus-01.azurewebsites.net/
+      
+    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F3F52AC085AB4DE98BD7FCDD27F1473F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0A472152A34B45BA80BD0247078A83DD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7B1844C14CBF49CBB4E5D9934B0A30AD }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'arvwebapp'
+          slot-name: 'staging'
+          package: .
+  deploy-PROD:
+    runs-on: windows-latest
+    needs: deploy-staging
+    environment: 
+      name: PROD
+      url: https://arvwebapp-a6f4djfreag7ghb0.westus-01.azurewebsites.net/
+      
+    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F3F52AC085AB4DE98BD7FCDD27F1473F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_0A472152A34B45BA80BD0247078A83DD }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7B1844C14CBF49CBB4E5D9934B0A30AD }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'arvwebapp'
+          slot-name: 'production'
+          package: .
